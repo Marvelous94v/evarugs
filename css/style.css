@@ -1,3 +1,23 @@
+/* Roboto Regular */
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.woff") format("woff");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Roboto Bold */
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Bold.woff") format("woff");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
 *,
 *::after,
 *::before {
@@ -6,6 +26,7 @@
 
 html,
 body {
+    font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
     font-weight: normal;
     color: #FFFFFF;
@@ -81,6 +102,8 @@ h6 {
 
 .header__nav a {
     font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 150%;
 }
 
 .header__logo {
@@ -93,6 +116,7 @@ h6 {
     margin-left: 55.3rem;
     background: linear-gradient(142deg, #c89afc 0%, #7c6afa 100%);
     font-size: 1.6rem;
+    line-height: 150%;
 }
 
 .main-display__background {
@@ -109,12 +133,15 @@ h6 {
 .main-display .container {
     position: relative;
     z-index: 9;
+    padding-bottom: 22.8rem;
 }
 
 .main-display__header {
     max-width: 76rem;
     margin-bottom: 5rem;
     font-size: 6.4rem;
+    font-weight: 700;
+    line-height: 140%;
 
 }
 
@@ -146,9 +173,110 @@ h6 {
 .timer__text {
     font-size: 1.6rem;
     opacity: 0.4;
+    line-height: 140%;
 }
 
 .main-display__button {
     background: linear-gradient(141deg, #df5950 0%, #451046 100%);
     font-size: 1.6rem;
+    line-height: 140%;
+}
+
+.work {
+    padding-top: 20rem;
+    padding-bottom: 24.3rem;
+
+}
+
+.work__wrap {
+    display: flex;
+
+}
+
+.work__img {
+    width: 52.6rem;
+    height: 49.9rem;
+    margin-right: 13.9rem;
+}
+
+.work__text {
+    max-width: 63.6rem;
+    padding-top: 6.9rem;
+}
+
+.work__header {
+    margin-bottom: 4.5rem;
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 140%;
+}
+
+.work__description {
+    font-size: 1.6rem;
+    line-height: 140%;
+}
+
+.process {
+    position: relative;
+    padding-bottom: 20rem;
+}
+
+.process__img {
+    width: 9rem;
+    height: 4.5rem;
+}
+
+.process__header {
+    margin-bottom: 4.9rem;
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 140%;
+}
+
+.process__title {
+    display: flex;
+}
+
+.process__discription {
+    max-width: 41.1rem;
+    margin-bottom: 8rem;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 160%;
+    opacity: 0.5;
+}
+
+.process__work {
+    margin-bottom: 6.5rem;
+    font-weight: 700;
+    font-size: 3.6rem;
+    line-height: 140%;
+}
+
+.process_text {
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 160%;
+    opacity: 0.5;
+
+}
+
+.process__columns {
+    display: flex;
+}
+
+.process__columns::after {
+    content: '';
+    display: block;
+    width: 130rem;
+    height: 0.2rem;
+    position: absolute;
+    top: 31rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: linear-gradient(142deg, #c89afc 0%, #7c6afa 100%);
+}
+
+.process_item {
+    max-width: 30.6rem;
 }
