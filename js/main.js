@@ -7,35 +7,23 @@ const contents = document.querySelectorAll('.program-line__content');
 
 
 contents.forEach((e) => {
-
     const title = e.querySelector('.program-line__title');
     const descr = e.querySelector('.program-line__descr');
 
-    /*     
-        // ver 1 (записывается в свойство, только одна значение свойства = 1 функция для выполнения)
-
-        console.dir(title);
-    
-        title.onclick = () => {
-            console.log(title);
-        } 
-       
-        // ver 2 (можно подключать сколько угодно событий на один элемент )
-        title.addEventListener('click', () => {
-            console.log('test');
-        })
-
-    */
-
     title.addEventListener('click', () => {
-        descr.classList.toggle('active')
-        // console.log(title);
-    })
+        const isActive = descr.classList.contains('active');
 
-    // console.dir(descr.classList.remove);
+        // Закрываем все активные блоки
+        document.querySelectorAll('.program-line__descr.active').forEach((el) => {
+            el.classList.remove('active');
+        });
 
-})
-
+        // Если текущий был неактивен — открываем его, иначе — оставляем закрытым
+        if (!isActive) {
+            descr.classList.add('active');
+        }
+    });
+});
 
 
 
