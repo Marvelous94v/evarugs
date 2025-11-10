@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Сборка ПК</title>
-    <script src="js/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/seamless-scroll-polyfill@latest"></script>
+    <script src="js/modal.js" defer></script>
+    <script src="js/accordion.js" defer></script>
+    <script src="js/smoothScroll.js" defer></script>
 </head>
 
 <body>
@@ -19,17 +22,35 @@
                 <img src="img/logo.svg" alt="">
             </a>
             <div class="header__menu">
+                <!-- Гамбургер -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <!-- Оригинальное меню -->
                 <nav class="header__nav">
+                    <a href="#work">Чем занимаемся</a>
+                    <a href="#process">Процесс работы</a>
+                    <a href="#command">Команда</a>
+                </nav>
+
+                <!-- Меню для гамбургера -->
+                <!-- <nav class="header__nav hamburger-menu">
                     <a href="#">Чем занимаемся</a>
                     <a href="#">Процесс работы</a>
                     <a href="#">Команда</a>
-                </nav>
+                    <button type="button" class="button header__button modal__button">Оставить заявку</button>
+                </nav> -->
+
                 <button type="button" class="button header__button modal__button">Оставить заявку</button>
             </div>
         </div>
-    </header ader>
+    </header>
 
     <main class="main">
+
         <section class="main-display">
             <div class="container">
                 <h1 class="main-display__header">Собираем игровой ПК под ваш бюджет</h1>
@@ -58,7 +79,40 @@
             </div>
         </section>
 
-        <section class="work">
+        <div class="course">
+            <div class="container">
+                <div class="course__wrap">
+                    <div class="course-button__wrap">
+                        <button class="button course__button modal__button">Заказать курс</button>
+                    </div>
+                    <div class="course__counter">
+                        <div class="course__counter-line">
+                            <span>Учеников всего:</span>
+                            <span class="course__number">200</span>
+                        </div>
+                        <div class="course__counter-line">
+                            <span>Успешно закончили курс:</span>
+                            <span class="course__number">190</span>
+                        </div>
+                    </div>
+                    <div class="course__progress">
+                        <div class="course__progress-label">
+                            <span>Заработано учениками:</span>
+                            <span class="course__number">400 000₽</span>
+                        </div>
+                        <div class="course__progress-element">
+                            <progress min="0" max="1000000" value="400000" />
+                        </div>
+                        <div class="course__progress-minmax">
+                            <span>0₽</span>
+                            <span>1 000 000₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="work" id="work">
             <div class="container">
                 <div class="work__wrap">
                     <div class="work__img">
@@ -78,7 +132,7 @@
 
         </section>
 
-        <section class="process">
+        <section class="process" id="process">
             <div class="container">
                 <div class="process__wrap">
                     <div class="process__title">
@@ -177,7 +231,7 @@
             </div>
         </section>
 
-        <section class="command">
+        <section class="command" id="command">
             <div class="container">
                 <div class="process__title command__title">
                     <div class="process__img">

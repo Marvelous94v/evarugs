@@ -49,14 +49,6 @@ img {
     flex-shrink: 0;
 }
 
-ul {
-    padding-left: 0;
-}
-
-ul>li {
-    list-style: none;
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -210,100 +202,6 @@ h6 {
     font-size: var(--text-size-medium);
     line-height: 140%;
 }
-
-
-.course {
-    padding-top: 100px;
-}
-
-.course__wrap {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-}
-
-.course-button__wrap {
-    display: flex;
-    flex-shrink: 0;
-    margin-right: 81px;
-}
-
-.course__button {
-    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-}
-
-.course__counter {
-    min-width: 251px;
-    margin-right: 81px;
-}
-
-.course__counter-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.course__counter-line,
-.course__progress-label {
-    color: #FFFFFF40;
-}
-
-.course__progress-label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 279px;
-}
-
-.course__number {
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.course__progress {
-    width: 100%;
-}
-
-.course__progress-element {
-    width: 100%;
-}
-
-.course__progress-minmax {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #FFFFFF40;
-}
-
-progress,
-progress[value],
-progress:not([value]) {
-    appearance: none;
-    width: 100%;
-    margin: 5px 0;
-}
-
-progress::-webkit-progress-bar {
-    background: #FFFFFF;
-    height: 6px;
-}
-
-progress::-webkit-progress-value {
-    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-    height: 6px;
-}
-
-progress {
-    background: #FFFFFF;
-    height: 6px;
-}
-
-progress::-moz-progress-value {
-    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-    height: 6px;
-}
-
 
 .work {
     padding-top: 20rem;

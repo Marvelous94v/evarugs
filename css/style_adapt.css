@@ -25,7 +25,6 @@
     font-display: swap;
 }
 
-
 *,
 *::after,
 *::before {
@@ -36,10 +35,12 @@ html,
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 62.5%;
+    /* Базовый размер для rem */
     font-weight: normal;
     color: #FFFFFF;
     background-image: linear-gradient(to right top, #060606, #050504, #030303, #020201, #000000);
     scrollbar-gutter: stable;
+    overflow-x: hidden;
 }
 
 img {
@@ -49,18 +50,9 @@ img {
     flex-shrink: 0;
 }
 
-ul {
-    padding-left: 0;
-}
-
-ul>li {
-    list-style: none;
-}
-
 a {
     text-decoration: none;
     color: inherit;
-
 }
 
 button,
@@ -80,13 +72,20 @@ h6 {
     margin: 0;
 }
 
+/* Адаптивный контейнер */
 .container {
-    width: 130rem;
+    width: 100%;
+    max-width: 130rem;
+    /* Сохраняем максимальную ширину */
     margin: 0 auto;
+    padding: 0 2rem;
+    /* Отступы на мобильных */
 }
 
 :root {
-    --text-size-medium: 1.6rem
+    --text-size-medium: 1.6rem;
+    /* Базовые переменные для адаптивности */
+    --base-font-size: 1.6rem;
 }
 
 .block__center {
@@ -96,30 +95,39 @@ h6 {
     align-items: center;
 }
 
-
 .button {
     border-radius: 5rem;
     padding: 1rem 3rem;
     color: #FFFFFF;
 }
 
+/* === HEADER === */
 .header {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 130rem;
     padding: 4rem 11rem 4rem 8rem;
     z-index: 10;
-}
-
-.header__wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
+.header__logo {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+}
+
 .header__menu {
+    display: flex;
+    align-items: center;
+}
+
+.header__nav {
     display: flex;
     align-items: center;
 }
@@ -134,12 +142,6 @@ h6 {
     line-height: 150%;
 }
 
-.header__logo {
-    display: block;
-    width: 4rem;
-    height: 4rem;
-}
-
 .header__button {
     margin-left: 55.3rem;
     background: linear-gradient(142deg, #c89afc 0%, #7c6afa 100%);
@@ -147,15 +149,24 @@ h6 {
     line-height: 150%;
 }
 
+/* === MAIN DISPLAY === */
 .main-display__background {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1;
+    width: 100%;
+    height: 100vh;
+    /* Занимает высоту окна */
+    object-fit: cover;
+    /* Обеспечивает покрытие всей области */
 }
 
 .main-display {
     padding-top: 27rem;
+    position: relative;
+    min-height: 100vh;
+    /* Чтобы контент не поднимался при малом содержимом */
 }
 
 .main-display .container {
@@ -170,9 +181,7 @@ h6 {
     font-size: 6.4rem;
     font-weight: 700;
     line-height: 140%;
-
 }
-
 
 .main-display__timer {
     display: flex;
@@ -183,12 +192,6 @@ h6 {
     width: 10.2rem;
     height: 11.2rem;
     background-color: #121212;
-
-    /*     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; */
-
 }
 
 .timer__item:not(:last-child) {
@@ -211,120 +214,27 @@ h6 {
     line-height: 140%;
 }
 
-
-.course {
-    padding-top: 100px;
-}
-
-.course__wrap {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-}
-
-.course-button__wrap {
-    display: flex;
-    flex-shrink: 0;
-    margin-right: 81px;
-}
-
-.course__button {
-    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-}
-
-.course__counter {
-    min-width: 251px;
-    margin-right: 81px;
-}
-
-.course__counter-line {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.course__counter-line,
-.course__progress-label {
-    color: #FFFFFF40;
-}
-
-.course__progress-label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 279px;
-}
-
-.course__number {
-    font-weight: 700;
-    color: #FFFFFF;
-}
-
-.course__progress {
-    width: 100%;
-}
-
-.course__progress-element {
-    width: 100%;
-}
-
-.course__progress-minmax {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #FFFFFF40;
-}
-
-progress,
-progress[value],
-progress:not([value]) {
-    appearance: none;
-    width: 100%;
-    margin: 5px 0;
-}
-
-progress::-webkit-progress-bar {
-    background: #FFFFFF;
-    height: 6px;
-}
-
-progress::-webkit-progress-value {
-    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-    height: 6px;
-}
-
-progress {
-    background: #FFFFFF;
-    height: 6px;
-}
-
-progress::-moz-progress-value {
-    background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-    height: 6px;
-}
-
-
+/* === WORK === */
 .work {
     padding-top: 20rem;
     padding-bottom: 24.3rem;
-
 }
 
 .work__wrap {
     display: flex;
-
+    gap: 13.9rem;
 }
 
 .work__img {
     width: 52.6rem;
     height: 49.9rem;
-    margin-right: 13.9rem;
+    flex-shrink: 0;
 }
 
 .work__text {
     max-width: 63.6rem;
     padding-top: 6.9rem;
+    flex: 1;
 }
 
 .work__header {
@@ -339,7 +249,7 @@ progress::-moz-progress-value {
     line-height: 140%;
 }
 
-
+/* === PROCESS === */
 .process {
     position: relative;
     padding-bottom: 20rem;
@@ -388,11 +298,11 @@ progress::-moz-progress-value {
     font-size: 1.4rem;
     line-height: 160%;
     opacity: 0.5;
-
 }
 
 .process__columns {
     display: flex;
+    gap: 2rem;
 }
 
 .process__columns::after {
@@ -403,14 +313,16 @@ progress::-moz-progress-value {
     position: absolute;
     top: 31rem;
     left: 50%;
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
     background: linear-gradient(142deg, #c89afc 0%, #7c6afa 100%);
 }
 
 .process_item {
     max-width: 30.6rem;
+    flex: 1;
 }
 
+/* === COMMAND === */
 .command {
     padding-bottom: 20rem;
 }
@@ -435,14 +347,9 @@ progress::-moz-progress-value {
     justify-content: space-between;
     padding-left: 11rem;
     padding-right: 11rem;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
-
-/* .command_item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-} */
 
 .command__name {
     margin-bottom: 1.5rem;
@@ -450,7 +357,6 @@ progress::-moz-progress-value {
     font-size: 2.4rem;
     line-height: 140%;
 }
-
 
 .command__profession {
     margin-bottom: 3rem;
@@ -468,17 +374,10 @@ progress::-moz-progress-value {
     border: 0.1rem solid #FFFFFF;
 }
 
+/* === ASSEMBLY === */
 .assembly {
     padding-bottom: 24.4rem;
 }
-
-/* .assembly__wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-} */
 
 .assembly__header {
     margin-bottom: 3rem;
@@ -504,7 +403,7 @@ progress::-moz-progress-value {
 
 .assembly__socials {
     display: flex;
-
+    gap: 3rem;
 }
 
 .assembly__item {
@@ -522,11 +421,7 @@ progress::-moz-progress-value {
     height: 50%;
 }
 
-.assembly__item:not(:last-child) {
-    margin-right: 3rem;
-}
-
-
+/* === MODAL === */
 .modal {
     position: fixed;
     inset: 0;
@@ -542,10 +437,12 @@ progress::-moz-progress-value {
 
 .modal__inner {
     position: relative;
-    width: 66.3rem;
+    width: 100%;
+    max-width: 66.3rem;
     padding: 9rem 1rem;
     background: #2C2C2C;
     text-align: center;
+    margin: 0 auto;
 }
 
 .modal__header {
@@ -560,9 +457,7 @@ progress::-moz-progress-value {
     font-size: var(--text-size-medium);
     line-height: 160%;
     opacity: 0.5;
-
 }
-
 
 .modal__elements {
     margin: 0 auto 3.2rem auto;
@@ -571,8 +466,6 @@ progress::-moz-progress-value {
 
 .modal__item {
     height: 4.4rem;
-
-
 }
 
 .modal__item:not(:last-child) {
@@ -582,15 +475,12 @@ progress::-moz-progress-value {
 .modal__input {
     width: 100%;
     height: 100%;
-
     background-color: grey;
     border-radius: 5rem;
-
     font-size: 1.4rem;
     line-height: 160%;
     color: #FFFFFF;
     opacity: 0.8;
-
     padding-left: 2rem;
     padding-right: 2rem;
 }
@@ -607,7 +497,6 @@ progress::-moz-progress-value {
     width: 4rem;
     height: 4rem;
     cursor: pointer;
-
 }
 
 .noneScroll {
@@ -615,10 +504,9 @@ progress::-moz-progress-value {
     height: 100%;
 }
 
-
-
+/* === PROGRAM === */
 .program {
-    margin-bottom: 200px;
+    margin-bottom: 20rem;
 }
 
 .program__content {
@@ -632,7 +520,7 @@ progress::-moz-progress-value {
     content: '';
     position: absolute;
     background-image: url('../img/line.png');
-    width: 86px;
+    width: 8.6rem;
     height: 100%;
     background-repeat: no-repeat;
     left: 50%;
@@ -641,30 +529,36 @@ progress::-moz-progress-value {
 
 .program-line {
     display: flex;
-    justify-content: space-between;
-    width: 750px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 75rem;
 }
 
-.program-line__content:nth-child(n) {
+.program-line__content {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.program-line__content:nth-child(odd) {
     text-align: right;
+    padding-right: 15rem;
 }
 
-.program-line__content:nth-child(2n) {
+.program-line__content:nth-child(even) {
     text-align: left;
-    margin-top: 76px;
+    padding-left: 15rem;
 }
-
 
 .program__image {
-    margin: 0 auto;
-    width: 90px;
-    margin-bottom: 76px;
+    margin: 0 auto 7.6rem auto;
+    width: 9rem;
+    height: auto;
 }
 
 .program .program__image {
     transform: rotate(180deg);
 }
-
 
 .program__header {
     text-align: center;
@@ -674,18 +568,19 @@ progress::-moz-progress-value {
 }
 
 .program__description {
-    max-width: 410px;
+    max-width: 41rem;
     text-align: center;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1.6rem;
     line-height: 160%;
     color: #FFFFFF40;
-    margin: 30px auto 80px auto;
+    margin: 3rem auto 8rem auto;
 }
 
 .program-line__content {
-    width: 304px;
-    height: 115px;
+    width: 100%;
+    max-width: 30.4rem;
+    min-height: 11.5rem;
 }
 
 .program-line__descr {
@@ -695,19 +590,349 @@ progress::-moz-progress-value {
 
 .program-line__descr.active {
     height: auto;
-    overflow: auto;
+    overflow: visible;
 }
 
 .program-line__title {
     cursor: pointer;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 1.4rem;
     line-height: 160%;
     color: #FFFFFF40;
 }
 
 .program-line__descr {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.8rem;
     line-height: 160%;
+}
+
+/* === ГАМБУРГЕР МЕНЮ === */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 3rem;
+    height: 2.1rem;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.hamburger span {
+    display: block;
+    height: 0.3rem;
+    width: 100%;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(0.9rem) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-0.9rem) rotate(-45deg);
+}
+
+.header__nav.hamburger-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 30rem;
+    height: 100vh;
+    background: linear-gradient(to right top, #060606, #050504, #030303, #020201, #000000);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease;
+    z-index: 99;
+    padding: 4rem 2rem;
+}
+
+.header__nav.hamburger-menu.active {
+    right: 0;
+}
+
+.header__nav.hamburger-menu a {
+    display: block;
+    margin: 1.5rem 0;
+    font-size: 2rem;
+}
+
+.header__nav.hamburger-menu .header__button {
+    margin-left: 0;
+    margin-top: 3rem;
+}
+
+/* === АДАПТИВНОСТЬ === */
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 3rem;
+    }
+
+    .header {
+        padding: 2rem 6rem 2rem 4rem;
+    }
+
+    .header__nav a:not(:last-child) {
+        margin-right: 4rem;
+    }
+
+    .header__button {
+        margin-left: 20rem;
+    }
+
+    .main-display__header {
+        font-size: 5rem;
+    }
+
+    .work__wrap {
+        flex-direction: column;
+        gap: 5rem;
+    }
+
+    .work__img {
+        width: 100%;
+        max-width: 52.6rem;
+        height: auto;
+    }
+
+    .work__text {
+        padding-top: 0;
+        max-width: 100%;
+    }
+
+    .process__columns {
+        flex-direction: column;
+    }
+
+    .process__columns::after {
+        display: none;
+    }
+
+    .command__wrap {
+        padding: 0 2rem;
+    }
+
+    .program-line {
+        max-width: 100%;
+    }
+
+    .program-line__content:nth-child(odd),
+    .program-line__content:nth-child(even) {
+        padding: 0 2rem;
+    }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+
+    html,
+    body {
+        font-size: 50%;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    /* Показываем гамбургер */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Скрываем оригинальное меню */
+    .header__nav:not(.hamburger-menu) {
+        display: none;
+    }
+
+    .header {
+        position: static;
+        transform: none;
+        padding: 2rem 1.5rem;
+        max-width: 100%;
+        justify-content: space-between;
+    }
+
+    .header__menu {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header__button {
+        position: absolute;
+        top: 2rem;
+        right: 5rem;
+        margin-left: 0;
+        z-index: 98;
+    }
+
+    .main-display {
+        padding-top: 15rem;
+    }
+
+    .main-display .container {
+        padding-bottom: 15rem;
+    }
+
+    .main-display__header {
+        font-size: 3.2rem;
+        margin-bottom: 3rem;
+        max-width: 100%;
+    }
+
+    .main-display__timer {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .timer__item {
+        width: 8rem;
+        height: 8.8rem;
+    }
+
+    .timer__count {
+        font-size: 2.8rem;
+    }
+
+    .work {
+        padding-top: 10rem;
+        padding-bottom: 15rem;
+    }
+
+    .work__img {
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        margin-bottom: 3rem;
+    }
+
+    .work__header {
+        font-size: 3.2rem;
+    }
+
+    .process {
+        padding-bottom: 15rem;
+    }
+
+    .process__header {
+        font-size: 3.2rem;
+        margin-bottom: 3rem;
+    }
+
+    .process__work {
+        font-size: 2.8rem;
+    }
+
+    .command {
+        padding-bottom: 15rem;
+    }
+
+    .command__header {
+        font-size: 3.2rem;
+    }
+
+    .command__wrap {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 1rem;
+        gap: 5rem;
+    }
+
+    .assembly {
+        padding-bottom: 15rem;
+    }
+
+    .assembly__header {
+        font-size: 3.2rem;
+    }
+
+    .assembly__socials {
+        justify-content: center;
+    }
+
+    .modal__inner {
+        padding: 5rem 1rem;
+        margin: 2rem;
+    }
+
+    .modal__header {
+        font-size: 3.2rem;
+    }
+
+    .program {
+        margin-bottom: 15rem;
+    }
+
+    .program__header {
+        font-size: 3.2rem;
+    }
+
+    .program-line__content {
+        max-width: 100%;
+        padding: 0 1rem !important;
+    }
+
+    .program-line__title {
+        font-size: 1.2rem;
+    }
+
+    .program-line__descr {
+        font-size: 1.4rem;
+    }
+}
+
+/* Маленькие мобильные устройства */
+@media (max-width: 480px) {
+
+    html,
+    body {
+        font-size: 40%;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .header__button {
+        right: 3rem;
+        padding: 0.8rem 2rem;
+        font-size: 1.4rem;
+    }
+
+    .main-display__header {
+        font-size: 2.4rem;
+    }
+
+    .work__header {
+        font-size: 2.4rem;
+    }
+
+    .process__header {
+        font-size: 2.4rem;
+    }
+
+    .command__header {
+        font-size: 2.4rem;
+    }
+
+    .assembly__header {
+        font-size: 2.4rem;
+    }
+
+    .program__header {
+        font-size: 2.4rem;
+    }
+
+    .modal__header {
+        font-size: 2.4rem;
+    }
 }
