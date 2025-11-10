@@ -205,6 +205,10 @@ h6 {
     line-height: 140%;
 }
 
+.timer__hidden {
+    visibility: hidden;
+}
+
 .main-display__button {
     background: linear-gradient(141deg, #df5950 0%, #451046 100%);
     font-size: var(--text-size-medium);

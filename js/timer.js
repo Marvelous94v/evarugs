@@ -3,6 +3,7 @@ const hoursBlock = document.querySelector('.timer__hoursValue');
 const minutesBlock = document.querySelector('.timer__minutesValue');
 const secondsBlock = document.querySelector('.timer__secondsValue');
 const dateDeadline = '12 november 2025';
+const timerContainer = document.querySelector('.timer'); // контейнер таймера
 
 const pluralize = (n, titles) => {
     const num = Math.abs(n) % 100;
@@ -58,6 +59,11 @@ const updateTimer = () => {
         minutesBlock.style.color = '';
         secondsBlock.style.color = '';
     }
+
+    if (timerContainer.classList.contains('timer__hidden')) {
+        timerContainer.classList.remove('timer__hidden');
+    }
 }
 
+updateTimer();
 const interval = setInterval(updateTimer, 500);
