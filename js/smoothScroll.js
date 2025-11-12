@@ -1,31 +1,41 @@
-const navmenu = document.querySelector(".header__nav")
-const links = navmenu.querySelectorAll("a")
+///////////////////////////////
+////// Плавная прокрутка //////
+///////////////////////////////
 
-links.forEach((link) => {
+const scriptSmoothScroll = () => {
 
-    link.addEventListener('click', () => {
-        event.preventDefault();
+    const navmenu = document.querySelector(".header__nav")
+    const links = navmenu.querySelectorAll("a")
 
-        const section = document.querySelector(link.getAttribute('href'));
+    links.forEach((link) => {
 
-        if (section) {
+        link.addEventListener('click', () => {
+            event.preventDefault();
 
-            /* section.scrollIntoView({
-                block: 'start',
-                behavior: 'smooth'
-            }) */
+            const section = document.querySelector(link.getAttribute('href'));
 
-            seamless.scrollIntoView(section, {
-                behavior: "smooth",
-                block: "start",
-                inline: "center",
-            });
+            if (section) {
 
-        }
+                /* section.scrollIntoView({
+                    block: 'start',
+                    behavior: 'smooth'
+                }) */
+
+                seamless.scrollIntoView(section, {
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "center",
+                });
+
+            }
 
 
+        })
     })
-})
 
-console.log(seamless);
+}
+
+scriptSmoothScroll();
+
+
 

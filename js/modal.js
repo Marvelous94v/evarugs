@@ -1,73 +1,110 @@
-////////////////////////
-////// ПЕРЕМЕННЫЕ //////
-////////////////////////
-
-const modalWindow = document.querySelector('.modal');
-const buttonModals = document.querySelectorAll('.modal__button');
-const modalClose = document.querySelector('.modal_close');
-const body = document.querySelector('body');
-
-//////////////////////////////////////////////////////////////
-
 ////////////////////////////
 ////// МОДАЛЬНОЕ ОКНО //////
 ////////////////////////////
 
-// Открытие модального окна
-buttonModals.forEach((item) => {
-    item.addEventListener('click', () => {
-        modalWindow.style.display = 'flex';
-        body.classList.add('noneScroll');
-    });
-})
+const scriptModal = () => {
 
-// Закрытие модального окна
-modalWindow.addEventListener('click', (e) => {
-    const isModal = e.target.closest('.modal__inner');
+    const modalWindow = document.querySelector('.modal');
+    const buttonModals = document.querySelectorAll('.modal__button');
+    // const modalClose = document.querySelector('.modal_close');
+    const modalInner = document.querySelector('.modal__inner');
+    const body = document.querySelector('body');
+    const form = document.querySelector('form.modal');
 
-    if (!isModal) {
+    // Открытие модального окна
+    buttonModals.forEach((item) => {
+        item.addEventListener('click', () => {
+            modalWindow.style.display = 'flex';
+            body.classList.add('noneScroll');
+        });
+    })
+
+    // Функция закрытия
+    const closeModal = () => {
+        // отменяем текущую отправку, если она есть
+        if (window.modalCancelSend) window.modalCancelSend();
+
+        // Скрываем форму
         modalWindow.style.display = 'none';
+
+        // Удаляем защиту от прокрутки
         body.classList.remove('noneScroll');
-    }
 
-})
+        // Сбрасываем форму
+        if (form) form.reset();
 
-// Обработчик кнопки закрытия модального окна
-modalClose.addEventListener('click', () => {
-    modalWindow.style.display = 'none';
-    body.classList.remove('noneScroll');
-})
+        // Сбрасываем уведомление безопасно (не удаляем вложенный DOM)
+        const noticeOuter = modalWindow.querySelector('.form-notice');
+        if (noticeOuter) {
+            const noticeInner = noticeOuter.querySelector('.form-notice__inner');
+            if (noticeInner) {
+                // очищаем текст и убираем видимый класс, а display сбросим через transitionend
+                noticeInner.textContent = '';
+                noticeInner.classList.remove('is-visible', 'success', 'error', 'info');
+                // если display был установлен inline — прячем его сразу
+                noticeInner.style.display = 'none';
+            }
+        }
 
+        // Сбрасываем классы валидации у полей (опционально, но полезно)
+        const inputs = modalWindow.querySelectorAll('.modal__input');
+        inputs.forEach(i => {
+            i.classList.remove('is-valid', 'is-invalid');
+            i.removeAttribute('aria-invalid');
+        });
 
-
-
-////////// ДРУГОЕ /////////
-
-// Закрытие по ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        modalWindow.style.display = 'none';
-        body.classList.remove('noneScroll');
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.querySelector('.modal');
-    const btn = document.createElement('button');
-    btn.innerHTML = '&times;';
-    btn.style = `
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  `;
-    btn.onclick = () => {
-        modal.style.display = 'none';
-        document.body.classList.remove('noneScroll');
+        // Сброс прогресс-бара
+        const progressBar = modalWindow.querySelector('.form-fill-progress__bar');
+        if (progressBar) {
+            progressBar.style.width = '0%';
+            progressBar.classList.remove('progress--bad', 'progress--warn', 'progress--good');
+        }
     };
-    modal.appendChild(btn);
-});
+
+    // Закрытие модального окна (клик вне контента)
+    modalWindow.addEventListener('click', (e) => {
+        if (!e.target.closest('.modal__inner')) closeModal();
+    });
+
+    // Закрытие модального окна (ESC)
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    /*     // Обработчик кнопки закрытия модального окна
+    modalClose.addEventListener('click', () => {
+        modalWindow.style.display = 'none';
+        body.classList.remove('noneScroll');
+    })
+ */
+
+    // Добавление кнопки через JS
+    // Добавление кнопки закрытия прямо (вызовем только если modalInner найден)
+    if (modalInner) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'modal__close-button';
+        btn.setAttribute('aria-label', 'Закрыть');
+        btn.innerHTML = '&times;';
+        btn.style.cssText = `
+        position: absolute;
+        color: white;
+        top: 25px;
+        right: 25px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 10;
+    `;
+        btn.addEventListener('click', closeModal);
+        // Если уже есть кнопка похожая — не добавлять дубль
+        if (!modalInner.querySelector('.modal__close-button')) modalInner.appendChild(btn);
+    }
+
+
+}
+
+scriptModal();
+
+

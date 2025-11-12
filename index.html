@@ -13,6 +13,9 @@
     <script src="js/accordion.js" defer></script>
     <script src="js/smoothScroll.js" defer></script>
     <script src="js/timer.js" defer></script>
+    <script src="js/sendForm.js" defer></script>
+    <script src="js/cash.js" defer></script>
+
 </head>
 
 <body>
@@ -52,6 +55,7 @@
 
     <main class="main">
 
+        <!-- Главный баннер  -->
         <section class="main-display">
             <div class="container">
                 <h1 class="main-display__header">Собираем игровой ПК под ваш бюджет</h1>
@@ -80,39 +84,7 @@
             </div>
         </section>
 
-        <div class="course">
-            <div class="container">
-                <div class="course__wrap">
-                    <div class="course-button__wrap">
-                        <button class="button course__button modal__button">Заказать курс</button>
-                    </div>
-                    <div class="course__counter">
-                        <div class="course__counter-line">
-                            <span>Учеников всего:</span>
-                            <span class="course__number">200</span>
-                        </div>
-                        <div class="course__counter-line">
-                            <span>Успешно закончили курс:</span>
-                            <span class="course__number">190</span>
-                        </div>
-                    </div>
-                    <div class="course__progress">
-                        <div class="course__progress-label">
-                            <span>Заработано учениками:</span>
-                            <span class="course__number">400 000₽</span>
-                        </div>
-                        <div class="course__progress-element">
-                            <progress min="0" max="1000000" value="400000" />
-                        </div>
-                        <div class="course__progress-minmax">
-                            <span>0₽</span>
-                            <span>1 000 000₽</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!-- Чем мы занимаемся -->
         <section class="work" id="work">
             <div class="container">
                 <div class="work__wrap">
@@ -133,6 +105,7 @@
 
         </section>
 
+        <!-- Этапы работы -->
         <section class="process" id="process">
             <div class="container">
                 <div class="process__wrap">
@@ -171,6 +144,7 @@
             </div>
         </section>
 
+        <!-- Программа обучения -->
         <section class="program">
             <div class="container">
                 <div class="program__image">
@@ -232,6 +206,48 @@
             </div>
         </section>
 
+        <!-- Призыв к покупке курса -->
+        <div class="course">
+            <div class="container">
+                <div class="course__title">
+                    <div class="course__image">
+                        <img src="img/icon-command.svg" alt="">
+                    </div>
+                    <h2 class="program__header course__header">О нас в цифрах</h2>
+                </div>
+
+                <div class="course__wrap">
+                    <!--                     <div class="course-button__wrap">
+                        <button class="button course__button modal__button">Заказать курс</button>
+                    </div> -->
+                    <div class="course__counter">
+                        <div class="course__counter-line">
+                            <span>Учеников всего:</span>
+                            <span class="course__number">200</span>
+                        </div>
+                        <div class="course__counter-line">
+                            <span>Успешно закончили курс:</span>
+                            <span class="course__number">190</span>
+                        </div>
+                    </div>
+                    <div class="course__progress">
+                        <div class="course__progress-label">
+                            <span>Заработано учениками:</span>
+                            <span class="course__number">400 000₽</span>
+                        </div>
+                        <div class="course__progress-element">
+                            <progress min="0" max="1000000" value="400000" />
+                        </div>
+                        <div class="course__progress-minmax">
+                            <span>0₽</span>
+                            <span>1 000 000₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Комманда -->
         <section class="command" id="command">
             <div class="container">
                 <div class="process__title command__title">
@@ -269,6 +285,7 @@
             </div>
         </section>
 
+        <!-- Призыв к заказу -->
         <section class="assembly">
             <div class="container">
                 <div class="assembly__wrap block__center">
@@ -295,27 +312,44 @@
 
         </section>
 
-        <form action="#" class="modal block__center">
+        <!-- Модальное окно: Форма заказа -->
+        <form action="#" class="modal block__center" novalidate>
             <div class="modal__inner">
-                <div class="modal_close">
-                    <img src="img/cross.svg" alt="">
-                </div>
                 <h3 class="modal__header">Заявка на сборку ПК</h3>
                 <div class="modal__subheader">Мы свяжемся с вами, чтобы обсудить детали заказа</div>
+
                 <div class="modal__elements">
                     <div class="modal__item">
-                        <input type="text" class="modal__input" placeholder="Как вас зовут">
+                        <input name="name" type="text" class="modal__input" placeholder="Как вас зовут" required>
                     </div>
                     <div class="modal__item">
-                        <input type="tel" class="modal__input" placeholder="Номер телефона">
+                        <input name="tel" type="tel" class="modal__input" placeholder="Номер телефона" required
+                            pattern="^[+\d\s\-\(\)]{5,}$">
                     </div>
                     <div class="modal__item">
-                        <input type="email" class="modal__input" placeholder="E-mail">
+                        <input name="email" type="email" class="modal__input" placeholder="E-mail" required>
                     </div>
                 </div>
-                <button type="submit" class="button main-display__button">Отправить</button>
+
+                <!-- Прогресс заполнения (не броский, сохраняет стиль) -->
+                <div class="form-fill-progress" aria-hidden="true">
+                    <div class="form-fill-progress__bar" style="width:0%"></div>
+                </div>
+
+                <!-- Кнопка: текст + встроенный спиннер -->
+                <button type="submit" class="button main-display__button">
+                    <span class="button__text">Отправить</span>
+                    <span class="button__spinner" aria-hidden="true"></span>
+                </button>
+
+                <!-- Зарезервированное место под уведомление (не меняет макет) -->
+                <div class="form-notice" aria-live="polite" aria-atomic="true">
+                    <span class="form-notice__inner" role="status"></span>
+                </div>
             </div>
         </form>
+
+
 
     </main>
 </body>

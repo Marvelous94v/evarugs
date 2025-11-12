@@ -78,11 +78,19 @@ h5,
 h6 {
     padding: 0;
     margin: 0;
+    user-select: none;
+    /* нельзя выделить текст */
+    /* pointer-events: none; */
+    /* блок не реагирует на hover */
 }
 
 .container {
-    width: 130rem;
+    width: 100%;
+    max-width: 130rem;
+    /* Сохраняем максимальную ширину */
     margin: 0 auto;
+    padding: 0 2rem;
+    /* Отступы на мобильных */
 }
 
 :root {
@@ -103,14 +111,19 @@ h6 {
     color: #FFFFFF;
 }
 
+
+/* === HEADER === */
+
 .header {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-50%, 0);
     width: 100%;
+    /* max-width: 130rem; */
     padding: 4rem 11rem 4rem 8rem;
     z-index: 10;
+
 }
 
 .header__wrap {
@@ -217,19 +230,46 @@ h6 {
 
 
 .course {
-    padding-top: 100px;
+    margin-bottom: 20rem;
+    margin-top: 20rem;
+
+
+}
+
+.course__title {
+    display: flex;
+}
+
+.course__image {
+    width: 9rem;
+    height: 4.5rem;
+    margin-right: 2rem;
+}
+
+.course .course__image {
+    transform: rotate(90deg);
+}
+
+
+
+.course__header {
+    margin-bottom: 4.9rem;
+    padding-top: 1rem;
+    font-weight: 700;
+    font-size: 4.8rem;
+    line-height: 140%;
 }
 
 .course__wrap {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 1.6rem;
 }
 
 .course-button__wrap {
     display: flex;
     flex-shrink: 0;
-    margin-right: 81px;
+    margin-right: 8.1rem;
 }
 
 .course__button {
@@ -237,15 +277,15 @@ h6 {
 }
 
 .course__counter {
-    min-width: 251px;
-    margin-right: 81px;
+    min-width: 25.1rem;
+    margin-right: 8.1rem;
 }
 
 .course__counter-line {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 .course__counter-line,
@@ -257,7 +297,7 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 279px;
+    max-width: 27.9rem;
 }
 
 .course__number {
@@ -285,27 +325,27 @@ progress[value],
 progress:not([value]) {
     appearance: none;
     width: 100%;
-    margin: 5px 0;
+    margin: 0.5rem 0;
 }
 
 progress::-webkit-progress-bar {
     background: #FFFFFF;
-    height: 6px;
+    height: 0.6rem;
 }
 
 progress::-webkit-progress-value {
     background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-    height: 6px;
+    height: 0.6rem;
 }
 
 progress {
     background: #FFFFFF;
-    height: 6px;
+    height: 0.6rem;
 }
 
 progress::-moz-progress-value {
     background: linear-gradient(94.78deg, #DF5950 11.19%, #451046 93.72%);
-    height: 6px;
+    height: 0.6rem;
 }
 
 
@@ -434,6 +474,7 @@ progress::-moz-progress-value {
     border-radius: 50%;
 }
 
+
 .command__wrap {
     display: flex;
     justify-content: space-between;
@@ -530,7 +571,6 @@ progress::-moz-progress-value {
     margin-right: 3rem;
 }
 
-
 .modal {
     position: fixed;
     inset: 0;
@@ -546,6 +586,7 @@ progress::-moz-progress-value {
 
 .modal__inner {
     position: relative;
+    border-radius: 5rem;
     width: 66.3rem;
     padding: 9rem 1rem;
     background: #2C2C2C;
@@ -564,9 +605,7 @@ progress::-moz-progress-value {
     font-size: var(--text-size-medium);
     line-height: 160%;
     opacity: 0.5;
-
 }
-
 
 .modal__elements {
     margin: 0 auto 3.2rem auto;
@@ -574,9 +613,7 @@ progress::-moz-progress-value {
 }
 
 .modal__item {
-    height: 4.4rem;
-
-
+    height: 5rem;
 }
 
 .modal__item:not(:last-child) {
@@ -593,10 +630,10 @@ progress::-moz-progress-value {
     font-size: 1.4rem;
     line-height: 160%;
     color: #FFFFFF;
-    opacity: 0.8;
+    opacity: 0.9;
 
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 
 .modal__input::placeholder {
@@ -604,7 +641,7 @@ progress::-moz-progress-value {
     opacity: 0.5;
 }
 
-.modal_close {
+/* .modal_close {
     position: absolute;
     top: 2rem;
     right: 2rem;
@@ -612,7 +649,180 @@ progress::-moz-progress-value {
     height: 4rem;
     cursor: pointer;
 
+} */
+
+.form-notice {
+    display: none;
+    margin-top: 2rem;
+    height: 1.8rem;
+    text-align: center;
+
+    font-size: 1.4rem;
+    line-height: 160%;
+    opacity: 0.9;
+
+    transition: opacity 0.4s ease;
 }
+
+
+/* --- spinner в кнопке --- */
+.button.main-display__button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+.button__spinner {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-top-color: rgba(255, 255, 255, 0.95);
+    display: inline-block;
+    opacity: 0;
+    transform: scale(.8);
+    transition: opacity .16s ease, transform .16s ease;
+}
+
+.button.main-display__button.sending .button__spinner {
+    opacity: 1;
+    transform: scale(1);
+    animation: _spin .8s linear infinite;
+}
+
+@keyframes _spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
+/* Подсветка полей */
+.modal__input.is-valid {
+    box-shadow: 0 0 0 2px rgba(59, 195, 122, 0.12);
+}
+
+.modal__input.is-invalid {
+    box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.12);
+}
+
+/* маленькая подсказка под полем (необязательно) */
+.modal__hint {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: .4rem;
+    display: none;
+}
+
+.modal__hint.visible {
+    display: block;
+}
+
+
+
+/* --- progress заполнения формы --- */
+.form-fill-progress {
+    width: 90%;
+    max-width: 40rem;
+    height: 0.4rem;
+    border-radius: 9rem;
+    margin: 1.4rem auto 0;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    transition: width .28s ease, background .24s ease;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.24));
+}
+
+.form-fill-progress__bar {
+    margin: 0 auto;
+    /* центрирует при необходимости */
+    height: 100%;
+    width: 100%;
+    transition: width .28s ease;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.24));
+}
+
+/* состояния */
+.form-fill-progress__bar.progress--bad {
+    background: linear-gradient(90deg, #ff8a8a, #ff4d4d);
+    /* красный */
+}
+
+.form-fill-progress__bar.progress--warn {
+    background: linear-gradient(90deg, #ffd58a, #ffb84d);
+    /* жёлтый/оранжевый */
+}
+
+.form-fill-progress__bar.progress--good {
+    background: linear-gradient(90deg, #9be3a1, #39d06a);
+    /* зелёный */
+}
+
+/* --- уведомление: резерв места, плавное появление, полное скрытие --- */
+.form-notice {
+    box-sizing: border-box;
+    margin-top: 2rem;
+    height: 1.8rem;
+    /* фиксированная высота — интерфейс не "скачет" */
+    min-height: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 1rem;
+    color: #FFFFFF;
+    opacity: 0.95;
+    pointer-events: none;
+    /* по умолчанию не кликабельна */
+}
+
+/* внутренний элемент — будет display:none, пока скрыт */
+.form-notice__inner {
+    display: none;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity .24s cubic-bezier(.2, .9, .2, 1), transform .24s cubic-bezier(.2, .9, .2, 1);
+    pointer-events: auto;
+    /* когда видим, можно взаимодействовать с текстом/ссылками */
+    user-select: text;
+    font-size: 1.4rem;
+    line-height: 160%;
+}
+
+/* visible state (JS добавляет класс is-visible и ставит display:block перед этим) */
+.form-notice__inner.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* статусные цвета (адаптированы к темному фону) */
+.form-notice__inner.success {
+    color: #9be3a1;
+}
+
+.form-notice__inner.error {
+    color: #ffb3b3;
+}
+
+.form-notice__inner.info {
+    color: #cfe3ff;
+}
+
+/* Когда кнопка выключена — визуально */
+.button.main-display__button[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+
 
 .noneScroll {
     overflow: hidden;
@@ -622,7 +832,7 @@ progress::-moz-progress-value {
 
 
 .program {
-    margin-bottom: 200px;
+    margin-bottom: 20px;
 }
 
 .program__content {
